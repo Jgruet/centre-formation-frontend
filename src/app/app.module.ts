@@ -20,12 +20,15 @@ import { FormationDetailsComponent } from './pages/formation-details/formation-d
     NavbarComponent,
     RegisterComponent,
     FormationComponent,
+    LoginComponent,
+    FormationComponent,
     FormationDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],
