@@ -6,12 +6,14 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { FormationComponent } from './pages/formation/formation.component';
-
-import { HttpClientModule } from '@angular/common/http';
 import { FormationDetailsComponent } from './pages/formation-details/formation-details.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [

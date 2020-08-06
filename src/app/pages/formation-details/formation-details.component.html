@@ -1,0 +1,9 @@
+<div class="container">
+
+  <h3>{{ formation.titre }}</h3>
+
+  <p>{{ formation.date_debut | date: 'd/MM/yyyy' }} - {{ formation.date_fin | date: 'd/MM/yyyy'}}
+    | {{ formation.duree }} heures</p>
+  <p>{{ formation.description }}</p>
+
+</div>
