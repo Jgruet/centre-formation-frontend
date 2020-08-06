@@ -10,18 +10,23 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { FormationComponent } from './pages/formation/formation.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { FormationDetailsComponent } from './pages/formation-details/formation-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
     RegisterComponent,
-    FormationComponent
+    FormationComponent,
+    FormationDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
