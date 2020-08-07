@@ -10,3 +10,13 @@ p {
 .bg-light {
   background-color: #EDEDED;
 }
+
+.card-header {
+  background-color: #fff !important;
+  border: none;
+}
+
+.card-footer {
+  background-color: #ffffff !important;
+  border: none;
+}

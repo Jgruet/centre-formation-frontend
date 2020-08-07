@@ -14,7 +14,7 @@ export interface UserInterface {
   prenom: string;
   mail: string;
   mdp: string;
-  roleId: number;
+  role: string;
 }
 
 @Injectable({
@@ -24,6 +24,7 @@ export class UserService {
 
   public user: UserInterface;
 
+  public isloggedIn = false;
 
   constructor(private http: HttpClient) {
   }

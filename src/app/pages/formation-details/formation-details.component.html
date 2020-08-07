@@ -10,6 +10,7 @@
   <p>Cette formation est de type: {{ formation.type }}</p>
 
   <div class="d-flex justify-content-end">
+    <a class="btn btn-dark mr-3" *ngIf="userService.user && userService.user.role == 'Etudiant'">je m'inscris</a>
     <a class="btn btn-dark" routerLink="/formation">Retour</a>
   </div>
 

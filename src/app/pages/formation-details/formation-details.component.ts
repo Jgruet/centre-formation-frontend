@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FormationService, FormationsInterface} from '../../services/formation.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-formation-details',
@@ -20,7 +21,7 @@ export class FormationDetailsComponent implements OnInit {
     type: null,
   };
 
-  constructor(private activeRoute: ActivatedRoute, private formationService: FormationService) { }
+  constructor(private activeRoute: ActivatedRoute, private formationService: FormationService, public userService: UserService) { }
 
   ngOnInit(): void {
 
@@ -28,6 +29,8 @@ export class FormationDetailsComponent implements OnInit {
 
     this.formationService.loadFormationsDetails(id);
     this.formationService.formationsChanged.subscribe(data => this.formation = data);
+
+    console.log(this.userService.user);
 
   }
 

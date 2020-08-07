@@ -33,20 +33,25 @@
 <div class="container mt-4">
   <div class="card-deck">
     <div class="row">
-      <div class="col-4" *ngFor="let formation of formationList">
-        <div class="card mb-3">
-          <div class="card-body">
+      <div class="card mb-3 col-4" *ngFor="let formation of formationList">
 
-            <h4 class="card-title">{{ formation.titre }}</h4>
-
-            <p class="card-text">{{formation.description}}</p>
-            <a class="btn btn-dark" routerLink="/formation/{{ formation.id}}">Plus d'infos</a>
-          </div>
+        <div class="card-header">
+          <h4 class="card-title">{{ formation.titre }}</h4>
         </div>
+
+        <div class="card-body">
+          <p class="card-text">{{formation.description}}</p>
+        </div>
+
+        <div class="card-footer">
+          <a class="btn btn-dark" routerLink="/formation/{{ formation.id}}">Plus d'infos</a>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="bg-light">
   <div class="mt-4 pt-4">
@@ -55,7 +60,7 @@
   </div>
 
   <div class="container mt-4">
-    <div class="card-deck">
+    <div class="card-deck pb-4">
 
       <div class="card">
         <img src="assets/img/portrait1.jpg" class="card-img-top" alt="...">
@@ -69,7 +74,7 @@
       <div class="card">
         <img src="assets/img/portrait4.jpg" class="card-img-top" alt="...">
         <div class="card-body">
-          <h4 class="card-title">Lionel Bacaud</h4>
+          <h4 class="card-title">Justin Alsua</h4>
           <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, placeat!</p>
           <a class="btn btn-dark">Plus d'infos</a>
         </div>
@@ -88,7 +93,7 @@
   </div>
 </div>
 
-<div class="mt-4 pt-4">
+<div class="mt-2 pt-4">
   <h3>Découvrez nos formateurs</h3>
   <p>Ils sont là pour faire de vous le meilleur.</p>
 </div>

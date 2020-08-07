@@ -18,11 +18,11 @@
         <a class="nav-link" routerLink="/formateur">Nos Formateurs</a>
       </li>
 
-      <button *ngIf="!isLoggedIn" type="button" class="btn btn-dark"><a routerLink="/login">Connexion</a></button>
+      <button *ngIf="!userService.user" type="button" class="btn btn-dark"><a routerLink="/login">Connexion</a></button>
 
-      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <ul class="navbar-nav ml-auto" *ngIf="userService.user">
         <li class="nav-item mr-3 active">
-          <a href="/profile" class="nav-link" routerLink="profile">{{ fullName }}</a>
+          <a href="/profile" class="nav-link" routerLink="profile">{{ userService.user.nom + ' ' + userService.user.prenom }}</a>
         </li>
 
         <button type="button" class="btn btn-dark"><a (click)="logout()">Déconnexion</a></button>

@@ -9,3 +9,13 @@ h5 {
   margin-bottom: 50px;
   color: darkcyan;
 }
+
+.card-header {
+  background-color: #fff !important;
+  border: none;
+}
+
+.card-footer {
+  background-color: #ffffff !important;
+  border: none;
+}
