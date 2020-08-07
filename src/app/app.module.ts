@@ -14,6 +14,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { FormationComponent } from './pages/formation/formation.component';
 import { FormationDetailsComponent } from './pages/formation-details/formation-details.component';
 import { LoginComponent } from './pages/login/login.component';
+import { FormateurComponent } from './pages/formateur/formateur.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './pages/login/login.component';
     FormationComponent,
     LoginComponent,
     FormationComponent,
-    FormationDetailsComponent
+    FormationDetailsComponent,
+    FormateurComponent
   ],
   imports: [
     BrowserModule,
