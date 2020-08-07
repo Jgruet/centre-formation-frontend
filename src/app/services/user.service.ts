@@ -35,4 +35,8 @@ export class UserService {
   login(user): Observable<any> {
     return this.http.post(URL + 'connexion', user, httpOptions);
   }
+
+  getRole() {
+    return this.http.get(URL + 'role');
+  }
 }

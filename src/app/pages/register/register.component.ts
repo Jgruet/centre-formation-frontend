@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public user: UserInterface;
- form: any ={};
+  form: any = {};
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -25,24 +25,39 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value)
     this.user = form.value;
-
-
-    this.userService.register(this.user).subscribe(
-      data => {
-        if (data != null) {
-          throw data.message;
+    console.log(form.value);
+    if (form.value.mdp !== form.value.mdpConfirmation) {
+      this.errorMessage = 'Les mots de passe ne correspondent pas';
+      this.isSignUpFailed = true;
+    } else {
+      this.userService.register(this.user).subscribe(
+        data => {
+          console.log(data);
+          if (data.errno === 1062) {
+            this.errorMessage = 'L\'adresse email est déjà utilisée';
+            this.isSignUpFailed = true;
+          } else if (data.error === 'pwdFail') {
+            this.errorMessage = 'Le mot de passe est invalide';
+            this.isSignUpFailed = true;
+          } else if (data.message === 1) {
+            this.isSuccessful = true;
+            this.isSignUpFailed = false;
+          }
+          if (data != null) {
+            throw data.message;
+          }
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        err => {
+          console.log(err);
+          this.errorMessage = err.error.message;
+          console.log(this.errorMessage)
+          this.isSignUpFailed = true;
         }
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-      },
-      err => {
+      );
+    }
 
-        this.errorMessage = err.error.message;
-        console.log(this.errorMessage)
-        this.isSignUpFailed = true;
-      }
-    );
   }
 }
