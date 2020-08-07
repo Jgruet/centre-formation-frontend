@@ -15,6 +15,9 @@ import { FormationComponent } from './pages/formation/formation.component';
 import { FormationDetailsComponent } from './pages/formation-details/formation-details.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormateurComponent } from './pages/formateur/formateur.component';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,7 @@ import { FormateurComponent } from './pages/formateur/formateur.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

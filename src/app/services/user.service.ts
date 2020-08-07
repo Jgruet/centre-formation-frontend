@@ -1,7 +1,12 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
-const URL = 'http://localhost:3000/inscription';
+const URL = 'http://localhost:3000/';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 export interface UserInterface {
   id: number;
@@ -23,8 +28,11 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  public insertUser(user) {
-    this.http.post(URL, user).subscribe((data: UserInterface) => {
-    });
+  public register(user): Observable<any> {
+    return this.http.post(URL + 'inscription', user, httpOptions);
+  }
+
+  login(user): Observable<any> {
+    return this.http.post(URL + 'connexion', user, httpOptions);
   }
 }

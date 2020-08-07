@@ -16,16 +16,33 @@ export class RegisterComponent implements OnInit {
   }
 
   public user: UserInterface;
+ form: any ={};
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
-    const userInput = form.value;
-    console.log(userInput);
-    if (!form.errors && form.touched) {
-      this.userService.insertUser(userInput);
-      this.router.navigateByUrl('/home');
-    }
+    console.log(form.value)
+    this.user = form.value;
+
+
+    this.userService.register(this.user).subscribe(
+      data => {
+        if (data != null) {
+          throw data.message;
+        }
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+
+        this.errorMessage = err.error.message;
+        console.log(this.errorMessage)
+        this.isSignUpFailed = true;
+      }
+    );
   }
 }
