@@ -2,22 +2,22 @@
 
   <h1>NOS FORMATIONS</h1>
   <h5>DÉCOUVREZ NOS FORMATIONS PAR DOMAINES</h5>
+  <div class="cart-deck">
+    <div class="row">
+      <div class="col-4" *ngFor="let formation of formationList">
 
-  <div class="row">
-    <div class="col-md-6" *ngFor="let formation of formationList">
+        <div class="card mb-3" style="width: 18rem;">
+          <div class="card-body">
 
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
+            <h4 class="card-title">{{ formation.titre }}</h4>
 
-          <h4 class="card-title">{{ formation.titre }}</h4>
+            <p class="card-text">{{formation.description}}</p>
+            <a class="btn btn-dark" routerLink="/formation/{{ formation.id}}">Plus d'infos</a>
 
-          <p class="card-text">{{formation.description}}</p>
-          <a class="btn btn-dark" routerLink="/formation-details/{{ formation.id}}">Plus d'infos</a>
-
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
-
 </div>

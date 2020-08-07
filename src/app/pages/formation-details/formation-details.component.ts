@@ -9,15 +9,26 @@ import {FormationService, FormationsInterface} from '../../services/formation.se
 })
 export class FormationDetailsComponent implements OnInit {
 
-  public formation: FormationsInterface;
+  public formation: FormationsInterface = {
+    id: null,
+    titre: null,
+    duree: null,
+    date_debut: null,
+    date_fin: null,
+    description: null,
+    lieu: null,
+    type: null,
+  };
 
   constructor(private activeRoute: ActivatedRoute, private formationService: FormationService) { }
 
   ngOnInit(): void {
 
-    this.formation = this.formationService.getFormationsById(
-      parseInt(this.activeRoute.snapshot.paramMap.get('id'), 10)
-    );
+    const id = parseInt(this.activeRoute.snapshot.paramMap.get('id'), 10);
+
+    this.formationService.loadFormationsDetails(id);
+    this.formationService.formationsChanged.subscribe(data => this.formation = data);
+
   }
 
 }

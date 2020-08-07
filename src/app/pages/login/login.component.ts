@@ -9,7 +9,8 @@ import { TokenStorageService } from '../../services/token-storage.service';
 })
 export class LoginComponent implements OnInit {
   public showPassword = false;
-  form: any = {};
+
+  form: any = {mdp:''};
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
+    console.log(this.form);
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form)
+    console.log(this.form);
     this.userService.login(this.form).subscribe(
       data => {
 

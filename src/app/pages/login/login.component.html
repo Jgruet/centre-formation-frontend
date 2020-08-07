@@ -6,64 +6,50 @@
           <h3 class="panel-title">Connexion</h3>
         </div>
         <div class="panel-body">
-          <form *ngIf="!isLoggedIn"
-                name="form"
-                (ngSubmit)="f.form.valid && onSubmit()"
-                #f="ngForm"
-                novalidate>
+
+          <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
 
             <div class="form-group">
-              <input #mail="ngModel" [(ngModel)]="form.mail" autocomplete="username" required type="email" name="mail" id="mail"
-                     class="form-control input-sm" placeholder="Email">
-              <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="f.submitted && mail.invalid"
-              >
+              <input #mail="ngModel" [(ngModel)]="form.mail" autocomplete="username" required type="email" name="mail" id="mail" class="form-control input-sm" placeholder="Email">
+              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && mail.invalid">
                 Une adresse mail est requise
               </div>
             </div>
 
-
             <div class="form-group">
-              <input [(ngModel)]="form.mdp" autocomplete="password" required #mdp="ngModel" [type]="showPassword?'text':'password'" name="password" id="password" class="form-control input-sm"
-                     placeholder="Mot de passe">
-              <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="f.submitted && mdp.invalid"
-              >
-                <div *ngIf="mdp.errors.required">Mot de passe requis</div>
+              <input [(ngModel)]="form.mdp" autocomplete="password" required #mdp="ngModel" [type]="showPassword?'text':'password'" name="password" id="password" class="form-control input-sm" placeholder="Mot de passe">
+              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && mdp.invalid">
+                <div *ngIf="mdp.errors.required">
+                  Mot de passe requis
+                </div>
               </div>
             </div>
 
             <div class="form-check">
-              <input [(ngModel)]="showPassword" type="checkbox" name="password" id="checkboxPassword"
-                     class="form-check-input">
-              <label class="form-check-label" for="checkboxPassword">{{showPassword ? "Masquer" : "Afficher"}} le mot de
-                passe</label>
+              <input [(ngModel)]="showPassword" type="checkbox" name="showPassword" id="checkboxPassword" class="form-check-input">
+              <label class="form-check-label" for="checkboxPassword">{{showPassword ? "Masquer" : "Afficher"}} le mot de passe</label>
             </div>
 
-            <div class="">
+            <div class="form-group">
               <a routerLink="/register">Vous n'êtes pas encore inscrit ? Cliquez ici</a>
             </div>
 
             <div class="form-group">
               <button type="submit" value="Connexion" class="btn btn-dark btn-block">Connexion</button>
             </div>
+
             <div class="form-group">
-              <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="f.submitted && isLoginFailed"
-              >
+              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
                 Login failed: {{ errorMessage }}
               </div>
             </div>
+
           </form>
+
           <div class="alert alert-success" *ngIf="isLoggedIn">
             Logged in as {{ roles }}.
           </div>
+
         </div>
       </div>
     </div>
