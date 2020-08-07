@@ -1,9 +1,17 @@
-<div class="container">
+<div class="container mt-4">
 
-  <h3>{{ formation.titre }}</h3>
+  <h3>Formation: {{ formation.titre }}</h3>
 
-  <p>{{ formation.date_debut | date: 'd/MM/yyyy' }} - {{ formation.date_fin | date: 'd/MM/yyyy'}}
-    | {{ formation.duree }} heures</p>
+  <p> Du {{ formation.date_debut | date: 'd/MM/yyyy' }} au {{ formation.date_fin | date: 'd/MM/yyyy'}} | ({{ formation.duree }} heures)</p>
+
   <p>{{ formation.description }}</p>
+
+  <p>lieu: {{ formation.lieu }}</p>
+  <p>Cette formation est de type: {{ formation.type }}</p>
+
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-dark mr-3" *ngIf="userService.user && userService.user.role == 'Etudiant'">je m'inscris</a>
+    <a class="btn btn-dark" routerLink="/formation">Retour</a>
+  </div>
 
 </div>

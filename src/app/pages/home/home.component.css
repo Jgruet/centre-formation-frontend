@@ -1,0 +1,22 @@
+h3 {
+  text-align: center;
+  color: darkcyan;
+}
+
+p {
+  text-align: center;
+}
+
+.bg-light {
+  background-color: #EDEDED;
+}
+
+.card-header {
+  background-color: #fff !important;
+  border: none;
+}
+
+.card-footer {
+  background-color: #ffffff !important;
+  border: none;
+}

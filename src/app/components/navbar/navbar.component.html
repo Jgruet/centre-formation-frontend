@@ -2,11 +2,12 @@
 
   <a class="navbar-brand justify-content-start" routerLink="/home">Centre de Formation</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent" >
+  <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item mr-3">
@@ -17,15 +18,15 @@
         <a class="nav-link" routerLink="/formateur">Nos Formateurs</a>
       </li>
 
-      <button *ngIf="!isLoggedIn" type="button" class="btn btn-dark"><a routerLink="/login">Connexion</a></button>
+      <button *ngIf="!userService.user" type="button" class="btn btn-dark"><a routerLink="/login">Connexion</a></button>
 
-      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-        <li class="nav-item">
-          <a href="/profile" class="nav-link" routerLink="profile">{{ fullName }}</a>
+      <ul class="navbar-nav ml-auto" *ngIf="userService.user">
+        <li class="nav-item mr-3 active">
+          <a href="/profile" class="nav-link" routerLink="profile">{{ userService.user.nom + ' ' + userService.user.prenom }}</a>
         </li>
-        <li class="nav-item">
-          <a href class="nav-link" (click)="logout()">LogOut</a>
-        </li>
+
+        <button type="button" class="btn btn-dark"><a (click)="logout()">Déconnexion</a></button>
+
       </ul>
     </ul>
   </div>

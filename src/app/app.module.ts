@@ -16,6 +16,7 @@ import { FormationDetailsComponent } from './pages/formation-details/formation-d
 import { LoginComponent } from './pages/login/login.component';
 import { FormateurComponent } from './pages/formateur/formateur.component';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -29,7 +30,8 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     LoginComponent,
     FormationComponent,
     FormationDetailsComponent,
-    FormateurComponent
+    FormateurComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

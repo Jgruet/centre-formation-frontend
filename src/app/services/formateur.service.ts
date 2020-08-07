@@ -6,7 +6,7 @@ import {Subject} from 'rxjs';
 export interface FormateursInterface {
   id: number;
   nom: string;
-  prenom: string
+  prenom: string;
 }
 
 const URL = 'http://localhost:3000/formateurs';

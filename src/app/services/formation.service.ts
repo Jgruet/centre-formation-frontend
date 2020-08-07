@@ -14,7 +14,7 @@ export interface FormationsInterface {
   type: string;
 }
 
-const URL = 'http://localhost:3000/formations';
+const URL = 'http://localhost:3000/formations/';
 
 @Injectable({
   providedIn: 'root'
@@ -26,22 +26,25 @@ export class FormationService {
 
   // Définition de l'abonnement de notification
   public formationsListChanged: Subject<FormationsInterface[]>;
+  public formationsChanged: Subject<FormationsInterface>;
 
   constructor(private http: HttpClient) {
     this.formationsListChanged = new Subject<FormationsInterface[]>();
+    this.formationsChanged = new Subject<FormationsInterface>();
   }
 
-  public loadFormations(): void {
+  public loadFormations() {
     this.http.get(URL).subscribe((result: FormationsInterface[]) => {
       this.formationsList = result;
       this.formationsListChanged.next(result);
     });
   }
 
-  public getFormationsById(id: number): FormationsInterface {
-    return this.formationsList.find((item) => item.id === id);
+  public loadFormationsDetails(id: number) {
+    this.http.get(URL + id).subscribe((result: FormationsInterface) => {
+      this.formationsChanged.next(result);
+    });
   }
-
 }
 
 
