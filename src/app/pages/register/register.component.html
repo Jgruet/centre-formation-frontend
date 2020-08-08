@@ -1,30 +1,38 @@
 <div class="container">
-  <div class="row centered-form">
+  <div class="row centered-form justify-content-center">
     <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Inscription</h3>
         </div>
         <div class="panel-body">
-          <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate role="form">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group">
-                  <input required ngModel name="nom" type="text" id="first_name" class="form-control input-sm" placeholder="Prénom">
+                  <input  type="text" formControlName="prenom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" placeholder="Prénom">
+                  <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                    <div *ngIf="f.prenom.errors.required">Un prénom est requis</div>
+                  </div>
                 </div>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group">
-                  <input required ngModel name="prenom" type="text" id="last_name" class="form-control input-sm" placeholder="Nom">
+                  <input  type="text" formControlName="nom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" placeholder="Nom">
+                  <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                    <div *ngIf="f.nom.errors.required">Un nom est requis</div>
+                  </div>
                 </div>
+
               </div>
             </div>
 
             <div class="form-group">
-              <input type="email" class="form-control" name="mail" [(ngModel)]="form.mail" required #mail="ngModel" placeholder="Adresse email">
-              <div class="alert-danger" *ngIf="f.submitted && mail.invalid">
-                <div *ngIf="mail.errors.required"> Une adresse email est requise</div>
-                <div *ngIf="mail.errors.mail"> Votre adresse email est incorrecte</div>
+              <input type="text" formControlName="mail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" (change)="resetEmailAlreadyUsed()" placeholder="Adresse email"/>
+              <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                <div *ngIf="f.mail.errors.required">Une adresse email est requise</div>
+                <div *ngIf="f.mail.errors.email">L'adresse email doit être valide</div>
+                <div *ngIf="f.mail.errors.emailAlreadyUsed">Cette adresse email est déjà utilisée</div>
               </div>
             </div>
 
@@ -32,23 +40,28 @@
             <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group">
-                  <input required ngModel name="mdp"  type="password" autocomplete="new-password" id="password" class="form-control input-sm" placeholder="Mot de passe">
+                  <input pattern="" autocomplete="new-password" type="password" formControlName="mdp" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mdp.errors }" placeholder="Mot de passe" />
+                  <div *ngIf="submitted && f.mdp.errors" class="invalid-feedback">
+                    <div *ngIf="f.mdp.errors.required">Un mot de passe est requis</div>
+                    <div *ngIf="f.mdp.errors.pattern">Le mot de passe doit contenir: <br>- 8 caractères minimum <br>- au moins 1 majuscule <br>- au moins 1 chiffre <br>- au moins 1 caractère spécial </div>
+                  </div>
                 </div>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group">
-                  <input required type="password" ngModel name="mdpConfirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirmer">
+                  <input autocomplete="new-password" type="password" formControlName="mdpConfirmation" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mdpConfirmation.errors }" placeholder="Mot de passe" />
+                  <div *ngIf="submitted && f.mdpConfirmation.errors" class="invalid-feedback">
+                    <div *ngIf="f.mdpConfirmation.errors.required">La confirmation du mot de passe est requise</div>
+                    <div *ngIf="f.mdpConfirmation.errors.mustMatch">Les mots de passe doivent correspondre</div>
+                  </div>
                 </div>
               </div>
             </div>
             <button class="btn btn-dark btn-block">Confirmer</button>
-            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-              L'inscription à échouée!<br />{{ errorMessage }}
-            </div>
+
           </form>
-          <div class="alert alert-success" *ngIf="isSuccessful">
-            Votre inscription est validée
-          </div>
+          <div *ngIf="isSuccessful" class="alert-success">Votre inscription est validée</div>
+
         </div>
       </div>
     </div>
