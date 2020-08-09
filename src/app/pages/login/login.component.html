@@ -1,55 +1,94 @@
+<!--<div class="container">-->
+<!--  <div class="row centered-form">-->
+<!--    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">-->
+<!--      <div class="panel panel-default">-->
+<!--        <div class="panel-heading">-->
+<!--          <h3 class="panel-title">Connexion</h3>-->
+<!--        </div>-->
+<!--        <div class="panel-body">-->
+
+<!--          <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>-->
+
+<!--            <div class="form-group">-->
+<!--              <input #mail="ngModel" [(ngModel)]="form.mail" autocomplete="username" required type="email" name="mail" id="mail" class="form-control input-sm" placeholder="Email">-->
+<!--              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && mail.invalid">-->
+<!--                Une adresse mail est requise-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--              <input [(ngModel)]="form.mdp" autocomplete="password" required #mdp="ngModel" [type]="showPassword?'text':'password'" name="password" id="password" class="form-control input-sm" placeholder="Mot de passe">-->
+<!--              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && mdp.invalid">-->
+<!--                <div *ngIf="mdp.errors.required">-->
+<!--                  Mot de passe requis-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="form-check">-->
+<!--              <input [(ngModel)]="showPassword" type="checkbox" name="showPassword" id="checkboxPassword" class="form-check-input">-->
+<!--              <label class="form-check-label" for="checkboxPassword">{{showPassword ? "Masquer" : "Afficher"}} le mot de passe</label>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--              <a routerLink="/register">Vous n'êtes pas encore inscrit ? Cliquez ici</a>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--              <button type="submit" value="Connexion" class="btn btn-dark btn-block">Connexion</button>-->
+<!--            </div>-->
+<!--            -->
+<!--          </form>-->
+<!--          -->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
 <div class="container">
-  <div class="row centered-form">
+  <div class="row centered-form justify-content-center">
     <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Connexion</h3>
         </div>
         <div class="panel-body">
+          <form *ngIf="!isLoggedIn" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-          <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
 
             <div class="form-group">
-              <input #mail="ngModel" [(ngModel)]="form.mail" autocomplete="username" required type="email" name="mail" id="mail" class="form-control input-sm" placeholder="Email">
-              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && mail.invalid">
-                Une adresse mail est requise
+              <input autocomplete="username" type="text" formControlName="mail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }"  placeholder="Adresse email"/>
+              <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                <div *ngIf="f.mail.errors.required">Une adresse email est requise</div>
+                <div *ngIf="f.mail.errors.email">L'adresse email doit être valide</div>
               </div>
             </div>
 
-            <div class="form-group">
-              <input [(ngModel)]="form.mdp" autocomplete="password" required #mdp="ngModel" [type]="showPassword?'text':'password'" name="password" id="password" class="form-control input-sm" placeholder="Mot de passe">
-              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && mdp.invalid">
-                <div *ngIf="mdp.errors.required">
-                  Mot de passe requis
+
+                <div class="form-group">
+                  <input pattern="" autocomplete="current-password" type="password" formControlName="mdp" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mdp.errors }" placeholder="Mot de passe" />
+                  <div *ngIf="submitted && f.mdp.errors" class="invalid-feedback">
+                    <div *ngIf="f.mdp.errors.required">Un mot de passe est requis</div>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="form-check">
-              <input [(ngModel)]="showPassword" type="checkbox" name="showPassword" id="checkboxPassword" class="form-check-input">
-              <label class="form-check-label" for="checkboxPassword">{{showPassword ? "Masquer" : "Afficher"}} le mot de passe</label>
-            </div>
-
             <div class="form-group">
               <a routerLink="/register">Vous n'êtes pas encore inscrit ? Cliquez ici</a>
             </div>
 
+
+            <button class="btn btn-dark btn-block">Confirmer</button>
             <div class="form-group">
-              <button type="submit" value="Connexion" class="btn btn-dark btn-block">Connexion</button>
-            </div>
-            <div class="form-group">
-              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-                Login failed: {{ errorMessage }}
+              <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">
+                Vos identifiants sont incorrects
               </div>
             </div>
           </form>
-          <div class="alert alert-success" *ngIf="isLoggedIn">
-            Logged in as {{ roles }}.
-          </div>
+          <div *ngIf="isLoggedIn" class="alert-success">Votre inscription est validée</div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
-
-

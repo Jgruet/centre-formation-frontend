@@ -18,7 +18,7 @@
         <a class="nav-link" routerLink="/formateur">Nos Formateurs</a>
       </li>
 
-      <button *ngIf="!userService.user" type="button" class="btn btn-dark"><a routerLink="/login">Connexion</a></button>
+      <button *ngIf="!userService.user" type="button" class="btn btn-dark" routerLink="/login">Connexion</button>
 
       <ul class="navbar-nav ml-auto" *ngIf="userService.user">
         <li class="nav-item mr-3 active">

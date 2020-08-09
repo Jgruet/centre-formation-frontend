@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
     if (!this.registerForm.invalid) {
       this.userService.register(this.registerForm.value).subscribe(
         data => {
-          console.log(data)
+          console.log(data);
           if (data.errno === 1062) {
             emailAlreadyUsed = true;
             this.registerForm.get('mail').updateValueAndValidity();
