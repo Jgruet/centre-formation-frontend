@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
+import {URL_BASE} from "./api-connexion.service";
 
 // Création d'une interface pour l'enregistrement des données
 export interface FormateursInterface {
@@ -9,7 +10,7 @@ export interface FormateursInterface {
   prenom: string;
 }
 
-const URL = 'http://localhost:3000/formateurs';
+const URL = URL_BASE + 'formateurs/';
 
 @Injectable({
   providedIn: 'root'

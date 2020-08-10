@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {URL_BASE} from './api-connexion.service';
 
-const URL = 'http://localhost:3000/';
+
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -30,14 +31,14 @@ export class UserService {
   }
 
   public register(user): Observable<any> {
-    return this.http.post(URL + 'inscription', user, httpOptions);
+    return this.http.post(URL_BASE + 'inscription', user, httpOptions);
   }
 
   login(user): Observable<any> {
-    return this.http.post(URL + 'connexion', user, httpOptions);
+    return this.http.post(URL_BASE + 'connexion', user, httpOptions);
   }
 
   getRole() {
-    return this.http.get(URL + 'role');
+    return this.http.get(URL_BASE + 'role');
   }
 }
